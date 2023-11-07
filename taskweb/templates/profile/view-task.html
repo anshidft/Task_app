@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet"  href="{% static 'css/style.css' %}">
+        <link rel="stylesheet"  href="https://bootswatch.com/5/darkly/bootstrap.min.css">
+
+    </head>
+    <body>
+        {% include "base.html" %}
+        <br>
+
+            <h3 class="text-center">View Tasks</h3>
+            <hr>
+                {% for tsk in task %}
+                <div class="container bg-light shadow-md p-5 form_layout" styke="margin-top:20px">
+
+                    {{tsk.title}}
+
+                    <br>
+                    {{tsk.content}}
+
+                    <h6>Assigned by: {{tsk.assignee}}</h6>
+                    <br><br><br>
+
+                    {% comment %} <a href="{% url 'update-tasks' tsk.id %}"> Update Task</a> {% endcomment %}
+                    <a href="{% url 'update-tasks' tsk.id %}" class="btn btn-outline-primary"> Update</a>
+
+                    <a href="{% url 'delete-tasks' tsk.id %}" class="btn btn-outline-danger ms-1"> Delete</a>
+
+                    
+                    <br>
+                </div>
+                <br>
+                {% endfor %}
+
+
+        </div>    
+    </body>
+
+</html>
